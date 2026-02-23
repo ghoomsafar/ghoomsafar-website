@@ -19,15 +19,15 @@ html {
 
 body {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	background-color: #1a1a1a;
-	color: #d0d0d0;
+	background-color: #F6F3C2;
+	color: #4B9DA9;
 	line-height: 1.6;
 }
 
 /* HEADER */
 header {
 	height: 140px;
-	background-color: #121212;
+	background-color: #faf8da;
 	border-bottom: 1px solid #2a2a2a;
 	display: flex;
 	align-items: center;
@@ -53,7 +53,7 @@ header {
 	gap: 20px;
 	cursor: pointer;
 	text-decoration: none;
-	color: #d0d0d0;
+	color: #4B9DA9;
 	transition: all 0.3s ease;
 }
 
@@ -61,7 +61,7 @@ header {
 	opacity: 0.8;
 }
 
-.logo-vector {
+/*.logo-vector {
 	width: 80px;
 	height: 80px;
 	background: linear-gradient(135deg, #444 0%, #333 100%);
@@ -72,17 +72,24 @@ header {
 	font-weight: bold;
 	color: white;
 	font-size: 24px;
+}*/
+
+.logo-image {
+	height: 80px;
+	width: auto;
+	object-fit: contain;
 }
 
-.logo-text h1 {
-	font-size: 28px;
-	font-weight: 700;
-	letter-spacing: -0.5px;
+.brand-text-image {
+    margin-top: 20px;
+	height: 50px;   /* matches previous heading visual height */
+	width: auto;
+	display: block;
 }
 
 .logo-text p {
 	font-size: 12px;
-	color: #777;
+	color: #000;
 	margin-top: 4px;
 	letter-spacing: 2px;
 	text-transform: uppercase;
@@ -100,8 +107,8 @@ nav a {
 	padding: 0 32px;
 	display: flex;
 	align-items: center;
-	background-color: #222;
-	color: #d0d0d0;
+	background-color: #E37434;
+	color: #ffffff;
 	text-decoration: none;
 	font-size: 15px;
 	font-weight: 600;
@@ -150,7 +157,7 @@ nav a.active::before {
 .menu-toggle span {
 	width: 28px;
 	height: 3px;
-	background-color: #d0d0d0;
+	background-color: #4B9DA9;
 	transition: all 0.3s ease;
 }
 
@@ -165,7 +172,7 @@ main {
 	display: flex;
 	align-items: center;
 	padding: 60px;
-	background-color: #1a1a1a;
+	background-color: #F6F3C2;
 	position: relative;
 	overflow: hidden;
 }
@@ -200,7 +207,7 @@ main {
 
 .hero-left p {
 	font-size: 18px;
-	color: #999;
+	color: #000;
 	margin-bottom: 40px;
 	line-height: 1.8;
 }
@@ -208,7 +215,7 @@ main {
 .cta-button {
 	display: inline-block;
 	padding: 18px 50px;
-	background-color: #333;
+	background-color: #E37434;
 	color: white;
 	text-decoration: none;
 	font-weight: 600;
@@ -251,8 +258,8 @@ main {
 	height: 400px;
 	overflow: hidden;
 	border: 1px solid #2a2a2a;
-	background-color: #222;
-	background-image: linear-gradient(135deg, #222 0%, #2a2a2a 100%);
+	background-color: #E37434;
+	background-image: linear-gradient(135deg, #E37434 0%, #2a2a2a 100%);
 }
 
 .slide {
@@ -264,7 +271,7 @@ main {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: #1a1a1a;
+	background-color: #F6F3C2;
 }
 
 .slide.active {
@@ -334,7 +341,7 @@ main {
 /* SERVICES SECTION - REDESIGNED WITH NUMBERS */
 .section-services {
 	padding: 120px 60px;
-	background-color: #121212;
+	background-color: #faf8da;
 	border-top: 1px solid #2a2a2a;
 }
 
@@ -427,7 +434,7 @@ main {
 }
 
 .service-card p {
-	color: #999;
+	color: #000;
 	font-size: 15px;
 	line-height: 1.8;
 }
@@ -435,7 +442,7 @@ main {
 /* PORTFOLIO SECTION */
 .section-portfolio {
 	padding: 120px 60px;
-	background-color: #1a1a1a;
+	background-color: #F6F3C2;
 	border-top: 1px solid #2a2a2a;
 }
 
@@ -452,7 +459,7 @@ main {
 
 .portfolio-item {
 	aspect-ratio: 16/10;
-	background: #222;
+	background: #E37434;
 	border: 1px solid #2a2a2a;
 	overflow: hidden;
 	position: relative;
@@ -511,13 +518,13 @@ main {
 
 .portfolio-label p {
 	font-size: 13px;
-	color: #777;
+	color: #000;
 }
 
 /* ABOUT SECTION */
 .section-about {
 	padding: 120px 60px;
-	background-color: #121212;
+	background-color: #faf8da;
 	border-top: 1px solid #2a2a2a;
 }
 
@@ -538,14 +545,14 @@ main {
 }
 
 .about-content p {
-	color: #999;
+	color: #000;
 	margin-bottom: 24px;
 	line-height: 1.9;
 	font-size: 15px;
 }
 
 .about-content p a {
-	color: #d0d0d0;
+	color: #4B9DA9;
 	text-decoration: underline;
 	transition: color 0.3s ease;
 }
@@ -562,7 +569,7 @@ main {
 
 .about-block {
 	padding: 30px;
-	background-color: #222;
+	background-color: #E37434;
 	border-left: 4px solid #555;
 	border-top: 1px solid #2a2a2a;
 	border-right: 1px solid #2a2a2a;
@@ -573,19 +580,19 @@ main {
 	font-size: 16px;
 	margin-bottom: 12px;
 	font-weight: 700;
-	color: #d0d0d0;
+	color: #ffffff;
 }
 
 .about-block p {
 	font-size: 13px;
-	color: #777;
+	color: #000;
 	margin-bottom: 0;
 }
 
 /* CONTACT SECTION - IMPROVED 2 COLUMN DESIGN */
 .section-contact {
 	padding: 120px 60px;
-	background-color: #1a1a1a;
+	background-color: #F6F3C2;
 	border-top: 1px solid #2a2a2a;
 }
 
@@ -608,7 +615,7 @@ main {
 }
 
 .contact-info p {
-	color: #999;
+	color: #000;
 	margin-bottom: 40px;
 	font-size: 15px;
 	line-height: 1.8;
@@ -640,7 +647,7 @@ main {
 
 .contact-item label {
 	font-size: 13px;
-	color: #777;
+	color: #000;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	font-weight: 600;
@@ -648,7 +655,7 @@ main {
 
 .contact-item a,
 .contact-item p {
-	color: #d0d0d0;
+	color: #4B9DA9;
 	text-decoration: none;
 	font-size: 16px;
 	transition: color 0.3s ease;
@@ -683,7 +690,7 @@ main {
 
 .form-group label {
 	font-size: 13px;
-	color: #777;
+	color: #000;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	font-weight: 600;
@@ -692,9 +699,10 @@ main {
 .form-group input,
 .form-group textarea {
 	padding: 14px 16px;
-	background-color: #222;
+	background-color: #faf8da;
+	background-color: #faf8da;
 	border: 1px solid #333;
-	color: #d0d0d0;
+	color: #4B9DA9;
 	font-family: inherit;
 	font-size: 14px;
 	transition: all 0.3s ease;
@@ -714,7 +722,7 @@ main {
 
 .submit-btn {
 	padding: 16px 40px;
-	background-color: #333;
+	background-color: #E37434;
 	color: white;
 	border: none;
 	border-left: 2px solid #555;
@@ -754,22 +762,22 @@ main {
 
 /* FOOTER */
 footer {
-	background-color: #121212;
+	background-color: #faf8da;
 	border-top: 1px solid #2a2a2a;
 	padding: 40px 60px;
 	text-align: center;
-	color: #777;
+	color: #000;
 	font-size: 13px;
 }
 
 footer a {
-	color: #999;
+	color: #000;
 	text-decoration: none;
 	transition: color 0.3s ease;
 }
 
 footer a:hover {
-	color: #d0d0d0;
+	color: #4B9DA9;
 }
 
 /* RESPONSIVE */
@@ -885,7 +893,7 @@ footer a:hover {
 }
 
 .modal-content {
-	background-color: #1a1a1a;
+	background-color: #F6F3C2;
 	border: 1px solid #2a2a2a;
 	max-width: 900px;
 	width: 90%;
@@ -916,11 +924,11 @@ footer a:hover {
 	font-size: 28px;
 	margin-bottom: 8px;
 	font-weight: 700;
-	color: #d0d0d0;
+	color: #4B9DA9;
 }
 
 .modal-details p#modalCategory {
-	color: #999;
+	color: #000;
 	font-size: 14px;
 	font-weight: 600;
 	letter-spacing: 1px;
@@ -931,7 +939,7 @@ footer a:hover {
 }
 
 .modal-details p#modalDescription {
-	color: #999;
+	color: #000;
 	font-size: 15px;
 	line-height: 1.8;
 	margin-bottom: 20px;
@@ -944,7 +952,7 @@ footer a:hover {
 }
 
 .modal-details li {
-	color: #999;
+	color: #000;
 	font-size: 15px;
 	line-height: 1.8;
 	margin-bottom: 12px;
@@ -1010,7 +1018,7 @@ footer a:hover {
 	height: 40px;
 	background: none;
 	border: none;
-	color: #d0d0d0;
+	color: #4B9DA9;
 	font-size: 28px;
 	cursor: pointer;
 	transition: all 0.3s ease;
@@ -1078,7 +1086,7 @@ footer a:hover {
 }
 
 .modal-content::-webkit-scrollbar-track {
-	background: #121212;
+	background: #faf8da;
 }
 
 .modal-content::-webkit-scrollbar-thumb {
@@ -1117,7 +1125,7 @@ footer a:hover {
 		top: 80px;
 		right: 20px;
 		left: auto;
-		background-color: #121212;
+		background-color: #faf8da;
 		flex-direction: column;
 		padding: 20px;
 		gap: 10px;
@@ -1138,7 +1146,7 @@ footer a:hover {
 	}
 
 	nav::-webkit-scrollbar-track {
-		background: #1a1a1a;
+		background: #F6F3C2;
 	}
 
 	nav::-webkit-scrollbar-thumb {
