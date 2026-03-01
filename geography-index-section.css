@@ -1,0 +1,413 @@
+/*
+  ====================================================
+  THE GEOGRAPHY INDEX — CSS
+  Append this to tooplate-graphite-creative.css
+  or include as a separate <link> after main CSS.
+  
+  Brand tokens used (matching existing site):
+    --bg-main:   #F6F3C2
+    --bg-alt:    #faf8da
+    --accent:    #E37434
+    --teal:      #4B9DA9
+    --border:    #2a2a2a
+    --dark:      #333
+    --text:      #000
+  ====================================================
+*/
+
+/* ─── GEOGRAPHY SECTION WRAPPER ─── */
+.section-geography {
+  padding: 120px 60px;
+  background-color: #faf8da;
+  border-top: 1px solid #2a2a2a;
+  overflow: hidden;
+  position: relative;
+}
+
+/* subtle dot-grid background texture — same spirit as the brand */
+.section-geography::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, #2a2a2a 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+.geography-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── HEADER BLOCK ─── */
+.geography-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.geography-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.geo-line {
+  display: block;
+  width: 60px;
+  height: 2px;
+  background-color: #E37434;
+}
+
+.geo-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #E37434;
+  text-transform: uppercase;
+  font-family: 'Courier New', monospace;
+}
+
+.geography-title {
+  font-size: 52px;
+  font-weight: 800;
+  color: #4B9DA9;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.geography-subtitle {
+  max-width: 560px;
+  margin: 0 auto;
+  color: #000;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* ─── STATS ROW ─── */
+.geo-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 60px;
+  border: 1px solid #2a2a2a;
+  background-color: #F6F3C2;
+  overflow: hidden;
+}
+
+.geo-stat {
+  flex: 1;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.geo-stat-divider {
+  width: 1px;
+  height: 60px;
+  background-color: #2a2a2a;
+  flex-shrink: 0;
+}
+
+.geo-stat-number {
+  display: block;
+  font-size: 48px;
+  font-weight: 800;
+  color: #E37434;
+  font-family: 'Courier New', monospace;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.geo-stat-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #4B9DA9;
+  font-weight: 600;
+}
+
+/* ─── FILTER CHIPS ─── */
+.geo-filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.geo-filter-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #4B9DA9;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+  margin-right: 6px;
+}
+
+.geo-filter {
+  padding: 8px 20px;
+  border: 1px solid #2a2a2a;
+  background-color: transparent;
+  color: #333;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+  clip-path: polygon(0 0, 92% 0, 100% 100%, 0 100%);
+  position: relative;
+}
+
+.geo-filter:hover {
+  background-color: #4B9DA9;
+  color: #fff;
+  border-color: #4B9DA9;
+}
+
+.geo-filter.active {
+  background-color: #E37434;
+  color: #fff;
+  border-color: #E37434;
+}
+
+/* ─── COUNTRY GRID ─── */
+.geo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0;
+  border-top: 1px solid #2a2a2a;
+  border-left: 1px solid #2a2a2a;
+}
+
+/* ─── SINGLE CARD ─── */
+.geo-card {
+  border-right: 1px solid #2a2a2a;
+  border-bottom: 1px solid #2a2a2a;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+  background-color: #F6F3C2;
+  transition: background-color 0.3s ease;
+}
+
+.geo-card:hover {
+  background-color: #fff9d6;
+  z-index: 2;
+}
+
+/* orange side-bar reveal on hover */
+.geo-hover-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 0;
+  background-color: #E37434;
+  transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.geo-card:hover .geo-hover-bar {
+  height: 100%;
+}
+
+.geo-card-inner {
+  padding: 32px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 190px;
+  justify-content: center;
+}
+
+.geo-index {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: #E37434;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+.geo-flag {
+  font-size: 38px;
+  line-height: 1;
+  margin-bottom: 8px;
+  transition: transform 0.3s ease;
+}
+
+.geo-card:hover .geo-flag {
+  transform: scale(1.15);
+}
+
+.geo-country-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: #4B9DA9;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+
+.geo-tagline {
+  font-size: 12px;
+  color: #000;
+  letter-spacing: 0.5px;
+  font-style: italic;
+  opacity: 0.75;
+}
+
+.geo-coords {
+  font-size: 10px;
+  font-family: 'Courier New', monospace;
+  color: #4B9DA9;
+  letter-spacing: 1.5px;
+  margin-top: 6px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.geo-card:hover .geo-coords {
+  opacity: 0.7;
+  transform: translateY(0);
+}
+
+/* ─── PLACEHOLDER CARD ─── */
+.geo-card-placeholder {
+  background-color: transparent;
+  border-style: dashed;
+}
+
+.geo-card-placeholder .geo-country-name {
+  color: #aaa;
+}
+
+.geo-card-placeholder .geo-index {
+  color: #aaa;
+}
+
+.geo-card-placeholder .geo-flag {
+  opacity: 0.4;
+}
+
+.geo-card-placeholder .geo-tagline {
+  color: #999;
+}
+
+.geo-card-placeholder:hover {
+  background-color: transparent;
+}
+
+.geo-card-placeholder .geo-hover-bar {
+  background-color: #aaa;
+}
+
+/* ─── HIDDEN (filtered out) state ─── */
+.geo-card.geo-hidden {
+  display: none;
+}
+
+/* ─── ENTRANCE ANIMATION ─── */
+@keyframes geoFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.geo-card {
+  animation: geoFadeUp 0.5s ease both;
+}
+
+/* stagger per card — first 12 cards */
+.geo-card:nth-child(1)  { animation-delay: 0.05s; }
+.geo-card:nth-child(2)  { animation-delay: 0.10s; }
+.geo-card:nth-child(3)  { animation-delay: 0.15s; }
+.geo-card:nth-child(4)  { animation-delay: 0.20s; }
+.geo-card:nth-child(5)  { animation-delay: 0.25s; }
+.geo-card:nth-child(6)  { animation-delay: 0.30s; }
+.geo-card:nth-child(7)  { animation-delay: 0.35s; }
+.geo-card:nth-child(8)  { animation-delay: 0.40s; }
+.geo-card:nth-child(9)  { animation-delay: 0.45s; }
+.geo-card:nth-child(10) { animation-delay: 0.50s; }
+.geo-card:nth-child(11) { animation-delay: 0.55s; }
+.geo-card:nth-child(12) { animation-delay: 0.60s; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .section-geography {
+    padding: 90px 40px;
+  }
+
+  .geography-title {
+    font-size: 42px;
+  }
+
+  .geo-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .section-geography {
+    padding: 70px 24px;
+  }
+
+  .geography-title {
+    font-size: 34px;
+  }
+
+  .geo-stats {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .geo-stat-divider {
+    width: 80%;
+    height: 1px;
+  }
+
+  .geo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .geo-filters {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .geography-title {
+    font-size: 28px;
+  }
+
+  .geo-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .geo-card-inner {
+    padding: 22px 16px 20px;
+    min-height: 160px;
+  }
+
+  .geo-country-name {
+    font-size: 16px;
+  }
+
+  .geo-flag {
+    font-size: 28px;
+  }
+}
