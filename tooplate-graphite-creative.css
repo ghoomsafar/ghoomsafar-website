@@ -514,11 +514,14 @@ main {
 	font-size: 18px;
 	margin-bottom: 6px;
 	font-weight: 700;
+	color: #ffffff;
+	text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
 }
 
 .portfolio-label p {
 	font-size: 13px;
-	color: #000;
+	color: rgba(255, 255, 255, 0.75);
+	text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
 }
 
 /* ABOUT SECTION */
@@ -1377,5 +1380,49 @@ nav a:hover,
 .submit-btn:hover,
 .modal-visit-btn:hover {
   border-radius: 45% 55% 40% 60% / 60% 40% 55% 45%;
+}
+
+/* ── Form success animation ── */
+.form-success {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 40px;
+    gap: 16px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.form-success.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.success-icon {
+    font-size: 52px;
+    animation: planeFly 1.2s ease forwards;
+}
+
+@keyframes planeFly {
+    0%   { transform: translateX(-40px) rotate(-10deg); opacity: 0; }
+    60%  { transform: translateX(8px) rotate(5deg);  opacity: 1; }
+    100% { transform: translateX(0px) rotate(0deg);  opacity: 1; }
+}
+
+.form-success h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1208;
+}
+
+.form-success p {
+    font-size: 14px;
+    color: #000;
+    opacity: 0.55;
 }
 

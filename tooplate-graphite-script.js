@@ -148,25 +148,67 @@ document.addEventListener('click', (e) => {
    }
 });
 
-// Contact form handling
-function handleSubmit(event) {
-   event.preventDefault();
-   const form = event.target;
-   const name = document.getElementById('name').value;
-   const email = document.getElementById('email').value;
-   const subject = document.getElementById('subject').value;
-   const message = document.getElementById('message').value;
+const contactForm = document.getElementById('contactForm');
+const formSuccess = document.getElementById('formSuccess');
 
-   // Here you would typically send the form data to a server
-   console.log('Form submitted:', {
-      name,
-      email,
-      subject,
-      message
-   });
-   alert('Thank you for your message! We will get back to you soon.');
-   form.reset();
-}
+contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const btn = contactForm.querySelector('.submit-btn');
+    const btnText = btn.textContent;
+
+    // Button loading state
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const data = new FormData(contactForm);
+
+    try {
+        const response = await fetch('https://formspree.io/f/mbdzjkvd', {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+            // Hide form, show success
+            contactForm.style.transition = 'opacity 0.4s ease';
+            contactForm.style.opacity = '0';
+            setTimeout(() => {
+                contactForm.style.display = 'none';
+                formSuccess.classList.add('active');
+            }, 400);
+
+            // Reset form silently in background
+            contactForm.reset();
+
+            // Bring form back after 5 seconds
+            setTimeout(() => {
+                formSuccess.classList.remove('active');
+                contactForm.style.display = 'flex';
+                setTimeout(() => {
+                    contactForm.style.opacity = '1';
+                }, 50);
+                btn.textContent = btnText;
+                btn.disabled = false;
+            }, 5000);
+
+        } else {
+            btn.textContent = 'Something went wrong. Try again.';
+            btn.disabled = false;
+            setTimeout(() => {
+                btn.textContent = btnText;
+            }, 3000);
+        }
+
+    } catch (error) {
+        btn.textContent = 'Something went wrong. Try again.';
+        btn.disabled = false;
+        setTimeout(() => {
+            btn.textContent = btnText;
+        }, 3000);
+    }
+});
 
 // Portfolio Modal Functions
 function openPortfolioModal(item) {
@@ -199,7 +241,6 @@ function openPortfolioModal(item) {
    });
 
    // Set visit button
-   document.getElementById('modalVisitBtn').href = visitUrl;
 
    modal.classList.add('active');
    document.body.style.overflow = 'hidden';
