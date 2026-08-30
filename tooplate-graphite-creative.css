@@ -374,12 +374,14 @@ main {
 
 .service-card {
 	padding: 40px;
-	background-color: transparent;
+	background: rgba(255, 255, 255, 0.06);
 	border-right: 1px solid #2a2a2a;
 	border-bottom: 1px solid #2a2a2a;
-	transition: all 0.3s ease;
+	transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease;
 	position: relative;
 	overflow: hidden;
+	isolation: isolate;
+	transform: translateY(0);
 }
 
 .service-card:nth-child(3n) {
@@ -398,11 +400,18 @@ main {
 	width: 4px;
 	height: 0;
 	background: linear-gradient(180deg, #555 0%, #333 100%);
-	transition: height 0.3s ease;
+	transition: height 0.35s ease;
+	z-index: -1;
 }
 
-.service-card:hover::before {
-	height: 100%;
+.service-card::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(circle at top left, rgba(227, 116, 52, 0.18), transparent 48%);
+	opacity: 0;
+	transition: opacity 0.35s ease;
+	z-index: -1;
 }
 
 .service-number {
@@ -413,10 +422,6 @@ main {
 	font-family: 'Courier New', monospace;
 	position: relative;
 	display: inline-block;
-}
-
-.service-card:hover .service-number {
-	color: #555;
 }
 
 .service-number::after {
@@ -431,8 +436,53 @@ main {
 	transition: transform 0.3s ease;
 }
 
-.service-card:hover .service-number::after {
-	transform: scaleX(1);
+@media (hover: hover) and (pointer: fine) {
+	.service-card:hover {
+		transform: translateY(-8px) scale(1.01);
+		box-shadow: 0 18px 32px rgba(42, 42, 42, 0.08);
+		background: rgba(255, 255, 255, 0.12);
+		border-color: rgba(42, 42, 42, 0.7);
+	}
+
+	.service-card:hover::before {
+		height: 100%;
+	}
+
+	.service-card:hover::after {
+		opacity: 1;
+	}
+
+	.service-card:hover .service-number {
+		color: #555;
+	}
+
+	.service-card:hover .service-number::after {
+		transform: scaleX(1);
+	}
+}
+
+@media (hover: none), (pointer: coarse) {
+	.service-card {
+		animation: mobileCardFloat 4.2s ease-in-out infinite alternate;
+		background: rgba(255, 255, 255, 0.04);
+	}
+
+	.service-card:nth-child(even) {
+		animation-delay: 0.25s;
+	}
+
+	.service-card:active {
+		transform: scale(0.99);
+	}
+}
+
+@keyframes mobileCardFloat {
+	0% {
+		transform: translateY(0px);
+	}
+	100% {
+		transform: translateY(-4px);
+	}
 }
 
 .service-card h3 {
@@ -1150,6 +1200,16 @@ footer {
 
 .modal-content::-webkit-scrollbar-thumb:hover {
 	background: #444;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.service-card,
+	.service-card::before,
+	.service-card::after,
+	.service-number::after {
+		animation: none !important;
+		transition: none !important;
+	}
 }
 
 @media (max-width: 768px) {
