@@ -198,11 +198,19 @@ main {
 	margin: 0 0 30px 0;
 }
 
+.hero-left h1,
 .hero-left h2 {
 	font-size: 48px;
 	font-weight: 600;
 	margin-bottom: 24px;
 	letter-spacing: -0.5px;
+}
+
+.hero-left h1 em,
+.hero-left h2 em {
+	font-style: italic;
+	color: #E37434;
+	font-weight: 700;
 }
 
 .hero-left p {
@@ -867,6 +875,7 @@ footer {
 		padding: 80px 40px;
 	}
 
+	.hero-left h1,
 	.hero-left h2 {
 		font-size: 40px;
 	}
