@@ -1397,6 +1397,7 @@ footer {
 }
 
 /* ── Magazine-style serif headings ── */
+.hero-left h1,
 .hero-left h2 {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(42px, 6vw, 80px);
@@ -1405,7 +1406,9 @@ footer {
   letter-spacing: -1.5px;
 }
 
+.hero-left h1 em,
 .hero-left h2 em {
+  font-family: 'Playfair Display', Georgia, serif;
   font-style: italic;
   color: #E37434;
 }
@@ -1425,6 +1428,7 @@ footer {
 
 /* ── Playfair Display for all section titles ── */
 .section-title,
+.hero-left h1,
 .hero-left h2,
 .contact-info h3,
 .about-content h3,
@@ -1494,4 +1498,3 @@ nav a:hover,
     color: #000;
     opacity: 0.55;
 }
-
