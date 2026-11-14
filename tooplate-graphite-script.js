@@ -56,14 +56,21 @@ function stopAutoSlide() {
 function showSlide(index) {
    slides.forEach((slide, i) => {
       slide.classList.toggle('active', i === index);
+      slide.setAttribute('aria-hidden', String(i !== index));
    });
    dots.forEach((dot, i) => {
       dot.classList.toggle('active', i === index);
+      dot.setAttribute('aria-pressed', String(i === index));
    });
+   const slideIndex = document.querySelector('.hero-image-index');
+   if (slideIndex) {
+      slideIndex.firstChild.textContent = `${String(index + 1).padStart(2, '0')} `;
+   }
 }
 
 // Manual slide selection
 function currentSlide(n) {
+   if (n < 0 || n >= slides.length) return;
    stopAutoSlide();
    currentSlideIndex = n;
    showSlide(currentSlideIndex);
@@ -73,8 +80,10 @@ function currentSlide(n) {
 // Mobile Menu Toggle
 menuToggle.addEventListener('click', (e) => {
    e.stopPropagation();
-   menuToggle.classList.toggle('active');
-   nav.classList.toggle('active');
+   const isOpen = menuToggle.classList.toggle('active');
+   nav.classList.toggle('active', isOpen);
+   menuToggle.setAttribute('aria-expanded', String(isOpen));
+   menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
 });
 
 // Scroll to top function
@@ -85,6 +94,8 @@ function scrollToTop() {
    });
    menuToggle.classList.remove('active');
    nav.classList.remove('active');
+   menuToggle.setAttribute('aria-expanded', 'false');
+   menuToggle.setAttribute('aria-label', 'Open navigation menu');
 }
 
 // Highlight active nav on scroll
@@ -119,6 +130,9 @@ navLinks.forEach(link => {
          // Close mobile menu
          menuToggle.classList.remove('active');
          nav.classList.remove('active');
+         menuToggle.setAttribute('aria-expanded', 'false');
+         menuToggle.setAttribute('aria-label', 'Open navigation menu');
+         document.querySelector('header').classList.remove('header-hidden');
 
          // Calculate scroll position accounting for header
          const headerHeight = document.querySelector('header').offsetHeight;
@@ -138,15 +152,61 @@ navLinks.forEach(link => {
 });
 
 // Update nav on scroll
-window.addEventListener('scroll', highlightActiveNav);
+let lastScrollY = window.scrollY;
+window.addEventListener('scroll', () => {
+   highlightActiveNav();
+   const header = document.querySelector('header');
+   const currentScrollY = window.scrollY;
+   const scrollingDown = currentScrollY > lastScrollY;
+
+   if (nav.classList.contains('active') || currentScrollY < 120 || !scrollingDown) {
+      header.classList.remove('header-hidden');
+   } else if (currentScrollY - lastScrollY > 2) {
+      header.classList.add('header-hidden');
+   }
+   lastScrollY = currentScrollY;
+}, { passive: true });
 
 // Close menu when clicking outside
 document.addEventListener('click', (e) => {
-   if (!e.target.closest('header')) {
+   if (e.target instanceof Element && !e.target.closest('header')) {
       menuToggle.classList.remove('active');
       nav.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open navigation menu');
    }
 });
+
+document.addEventListener('keydown', (e) => {
+   if (e.key === 'Escape' && nav.classList.contains('active')) {
+      menuToggle.classList.remove('active');
+      nav.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open navigation menu');
+      menuToggle.focus();
+   }
+});
+
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+   const revealItems = document.querySelectorAll(
+      '.section-services .geography-eyebrow, .service-card, .geography-header, .geo-stats, .section-portfolio .geography-eyebrow, .portfolio-item, .section-about > .section-title, .about-content, .about-block, .contact-info, .contact-form'
+   );
+   const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+         if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+         }
+      });
+   }, { threshold: 0.12, rootMargin: '0px 0px -32px 0px' });
+
+   revealItems.forEach((item, index) => {
+      item.classList.add('reveal');
+      item.style.transitionDelay = `${(index % 4) * 70}ms`;
+      revealObserver.observe(item);
+   });
+   document.body.classList.add('reveal-ready');
+}
 
 const contactForm = document.getElementById('contactForm');
 const formSuccess = document.getElementById('formSuccess');
@@ -211,50 +271,64 @@ contactForm.addEventListener('submit', async function(e) {
 });
 
 // Portfolio Modal Functions
+let activePortfolioItem = null;
+let modalCloseTimeout;
+
 function openPortfolioModal(item) {
    const modal = document.getElementById('portfolioModal');
    const label = item.querySelector('.portfolio-label');
    const data = item.querySelector('.portfolio-data');
    const image = item.querySelector('img');
 
-   // Get data from hidden content
-   const title = label.querySelector('h3').textContent;
-   const category = label.querySelector('p').textContent;
-   const imageUrl = image.src;
-   const description = data.querySelector('.description').textContent;
-   const features = data.querySelectorAll('.features li');
-   const visitUrl = data.querySelector('.visit-url').href;
+   if (!modal || !label || !data || !image) return;
 
-   // Populate modal
-   document.getElementById('modalTitle').textContent = title;
-   document.getElementById('modalCategory').textContent = category;
-   document.getElementById('modalImage').src = imageUrl;
-   document.getElementById('modalDescription').textContent = description;
+   const titleElement = label.querySelector('h3');
+   const categoryElement = label.querySelector('.portfolio-location, p');
+   const descriptionElement = data.querySelector('.description');
+   if (!titleElement || !categoryElement || !descriptionElement) return;
 
-   // Populate features list
+   document.getElementById('modalTitle').textContent = titleElement.textContent;
+   document.getElementById('modalCategory').textContent = categoryElement.textContent;
+   document.getElementById('modalImage').src = image.currentSrc || image.src;
+   document.getElementById('modalImage').alt = image.alt;
+   document.getElementById('modalDescription').textContent = descriptionElement.textContent.trim();
+
    const featuresList = document.getElementById('modalFeatures');
-   featuresList.innerHTML = '';
-   features.forEach(feature => {
-      const li = document.createElement('li');
-      li.textContent = feature.textContent;
-      featuresList.appendChild(li);
-   });
-
-   // Set visit button
-
+   featuresList.replaceChildren();
+   activePortfolioItem = item;
+   window.clearTimeout(modalCloseTimeout);
+   modal.classList.remove('active', 'closing');
+   void modal.offsetWidth;
+   modal.setAttribute('aria-hidden', 'false');
    modal.classList.add('active');
    document.body.style.overflow = 'hidden';
+   modal.querySelector('.modal-close').focus();
 }
 
 function closePortfolioModal() {
    const modal = document.getElementById('portfolioModal');
-   modal.classList.remove('active');
+   if (!modal || !modal.classList.contains('active') || modal.classList.contains('closing')) return;
+   modal.classList.add('closing');
+   modal.setAttribute('aria-hidden', 'true');
    document.body.style.overflow = 'auto';
+   modalCloseTimeout = window.setTimeout(() => {
+      modal.classList.remove('active', 'closing');
+      if (activePortfolioItem) {
+         activePortfolioItem.focus();
+         activePortfolioItem = null;
+      }
+   }, 320);
 }
 
 // Add click listeners to portfolio items
 document.querySelectorAll('.portfolio-item').forEach(item => {
    item.addEventListener('click', () => openPortfolioModal(item));
+   item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+         e.preventDefault();
+         openPortfolioModal(item);
+      }
+   });
 });
 
 // Close modal when clicking outside the content
@@ -266,10 +340,26 @@ document.getElementById('portfolioModal').addEventListener('click', (e) => {
 
 // Close modal with Escape key
 document.addEventListener('keydown', (e) => {
-   if (e.key === 'Escape') {
+   if (e.key === 'Escape' && document.getElementById('portfolioModal').classList.contains('active')) {
       closePortfolioModal();
    }
 });
 
 // Initialize on page load
 initSlider();
+
+let loaderDismissed = false;
+let loaderTimeout;
+function dismissLoader() {
+   if (loaderDismissed) return;
+   loaderDismissed = true;
+   window.clearTimeout(loaderTimeout);
+   document.documentElement.classList.add('is-ready');
+}
+
+loaderTimeout = window.setTimeout(dismissLoader, 800);
+const heroImage = document.querySelector('.slide.active img');
+Promise.all([
+   document.fonts.ready,
+   heroImage ? heroImage.decode().catch(() => undefined) : Promise.resolve()
+]).then(() => window.setTimeout(dismissLoader, 120));

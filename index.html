@@ -8,7 +8,7 @@
     <meta name="keywords" content="GhoomSafar, personalized travel, custom itineraries, travel planning, international travel, travel concierge, holidays to Thailand, Bali, Dubai, India, Sri Lanka, Mauritius">
     <meta name="robots" content="index, follow">
     <meta name="author" content="GhoomSafar">
-    <meta name="theme-color" content="#F6F3C2">
+    <meta name="theme-color" content="#f8f6ef">
     <meta property="og:type" content="website">
     <meta property="og:title" content="GhoomSafar | Personalized Travel Planning & Custom Itineraries">
     <meta property="og:description" content="Travel on your own terms with custom itineraries, assisted bookings, and thoughtful trip planning for global adventures.">
@@ -22,10 +22,12 @@
     <link rel="canonical" href="https://www.ghoomsafar.com/">
     <link rel="stylesheet" href="tooplate-graphite-creative.css">
     <link rel="stylesheet" href="geography-index-section.css">
+    <link rel="stylesheet" href="ghoomsafar-premium.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="images/favicon.ico">
+    <script>document.documentElement.classList.add('js');</script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -71,6 +73,10 @@ Free HTML CSS Template
 -->
 </head>
 <body>
+    <div class="site-loader" aria-hidden="true">
+        <img src="images/GhoomSafar-LogoNoBG.png" alt="">
+        <span>Finding your way</span>
+    </div>
     <!-- HEADER -->
     <header>
         <div class="header-container">
@@ -80,15 +86,15 @@ Free HTML CSS Template
                     <img src="images/GhoomSafar-LogoText.png" alt="GhoomSafar" class="brand-text-image">
                 </div>
             </a>
-            <nav>
+            <nav id="primary-navigation" aria-label="Main navigation">
                 <a href="#home" class="active">Home</a>
                 <a href="#services">Compass Box</a>
                 <a href="#geography">Geography</a>
                 <a href="#portfolio">Journeys</a>
                 <a href="#about">Our Story</a>
-                <a href="#contact">Start Your Safar</a>
+                <a href="#contact" class="nav-cta">Plan a trip <span aria-hidden="true">↗</span></a>
             </nav>
-            <button class="menu-toggle" aria-label="Toggle menu">
+            <button class="menu-toggle" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -102,26 +108,34 @@ Free HTML CSS Template
         <section id="home" class="section-hero">
             <div class="hero-container">
                 <div class="hero-left">
-                    <div class="hero-line"></div>
+                    <p class="hero-eyebrow hero-eyebrow-line" aria-hidden="true"><span class="hero-line"></span></p>
                     <h1 class="hero-title">Travel on<br><em>your own</em><br>terms.</h1>
-                    <p>At GhoomSafar, we design personalized journeys that give you the freedom to explore while we take care of the planning, bookings, and preparation. Less stress. More stories.</p>
-                    <a href="#contact" class="cta-button">Plan My Safar</a>
+                    <p class="hero-description">The freedom to find your own way, with every little detail taken care of. Personal journeys, thoughtfully planned around you.</p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="cta-button">Plan My Safar <span aria-hidden="true">↗</span></a>
+                        <a href="#geography" class="hero-text-link">Explore destinations <span aria-hidden="true">↓</span></a>
+                    </div>
+                    <div class="hero-trust"><span aria-hidden="true">✳</span> Made for the way you love to travel</div>
                 </div>
-                <div class="slider-container">
-                    <div class="slide active" data-fallback="Travel planning">
+                <div class="hero-visual">
+                    <div class="slider-container" role="region" aria-label="Travel inspiration" aria-roledescription="carousel">
+                    <div class="slide active" role="group" aria-label="Image 1 of 3" data-fallback="Travel planning">
                         <img src="images/Slideshow-image-1.jpg" alt="Couple reviewing a custom travel itinerary in a scenic destination">
                     </div>
-                    <div class="slide" data-fallback="Travel moments">
+                    <div class="slide" role="group" aria-label="Image 2 of 3" aria-hidden="true" data-fallback="Travel moments">
                         <img src="images/Slideshow-image-2.jpg" alt="Travel inspiration and destination planning for a tropical escape">
                     </div>
-                    <div class="slide" data-fallback="Adventure planning">
+                    <div class="slide" role="group" aria-label="Image 3 of 3" aria-hidden="true" data-fallback="Adventure planning">
                         <img src="images/Slideshow-image-3.jpg" alt="Global travel planning with curated experiences and guided bookings">
                     </div>
-                    <div class="slider-dots">
-                        <div class="dot active" onclick="currentSlide(0)"></div>
-                        <div class="dot" onclick="currentSlide(1)"></div>
-                        <div class="dot" onclick="currentSlide(2)"></div>
+                    <div class="slider-dots" aria-label="Choose a travel image">
+                        <button class="dot active" type="button" aria-label="Show image 1" aria-pressed="true" onclick="currentSlide(0)"></button>
+                        <button class="dot" type="button" aria-label="Show image 2" aria-pressed="false" onclick="currentSlide(1)"></button>
+                        <button class="dot" type="button" aria-label="Show image 3" aria-pressed="false" onclick="currentSlide(2)"></button>
                     </div>
+                    </div>
+                    <div class="hero-image-note"><span class="hero-note-icon" aria-hidden="true">✳</span><span><strong>A little more you.</strong><small>Every journey starts with what matters to you.</small></span></div>
+                    <div class="hero-image-index" aria-hidden="true">01 <span>/</span> 03</div>
                 </div>
             </div>
         </section>
@@ -386,41 +400,66 @@ Free HTML CSS Template
 
         <!-- PORTFOLIO SECTION -->
         <section id="portfolio" class="section-portfolio">
-            <div class="geography-eyebrow">
-                <span class="geo-line"></span>
-                <span class="geo-label">CUSTOMER REVIEWS</span>
-                <span class="geo-line"></span>
-            </div>
             <div class="portfolio-container">
-                <h2 class="section-title">Journeys We’ve Curated</h2>
+                <div class="portfolio-heading">
+                    <div>
+                        <div class="geography-eyebrow">
+                            <span class="geo-line"></span>
+                            <span class="geo-label">NOTES FROM THE ROAD</span>
+                        </div>
+                        <h2 class="section-title">Journeys We’ve Curated</h2>
+                    </div>
+                    <p class="portfolio-intro">The best part of every Safar is hearing how it felt. A few kind words from travellers who let us plan a little piece of theirs.</p>
+                </div>
                 <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <img src="images/tooplate-creative-21.jpg" alt="Sanyam Chhajed's Thailand trip review and travel experience" loading="lazy">
-                        <div class="portfolio-label">
-                            <h3>Sanyam Chhajed</h3>
-                            <p>Thailand - November 2025</p>
+                    <article class="portfolio-item" tabindex="0" role="button" aria-label="Read Sanyam Chhajed's Thailand journey story">
+                        <div class="portfolio-cover">
+                            <img src="images/tooplate-creative-21.jpg" alt="Illustrated portrait representing traveller Sanyam Chhajed" loading="lazy">
+                            <div class="portfolio-label">
+                                <span class="portfolio-location">THAILAND · NOVEMBER 2025</span>
+                                <h3>Sanyam Chhajed</h3>
+                            </div>
+                        </div>
+                        <div class="portfolio-card-copy">
+                            <span class="portfolio-quote-mark" aria-hidden="true">“</span>
+                            <p>“The travel was extremely smooth. You guys were our Google for the entire trip—just a message away.”</p>
+                            <span class="portfolio-read">Read their story <span aria-hidden="true">↗</span></span>
                         </div>
                         <div class="portfolio-data" hidden>
                             <p class="description">Thank you so much for such a wonderful trip. The travel was extremely smooth because all of the bookings you did were perfect. You guys were our google for the entire trip - just a message away, and we had our help in all the ways that we wanted. Definitely recommend choosing them for your next travels.</p>
                             <a href="https://www.youtube.com/@thatgoodgene" class="visit-url">View Journey</a>
                         </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="images/tooplate-creative-22.jpg" alt="Reena Sanghvi's Goa trip feedback and itinerary review" loading="lazy">
-                        <div class="portfolio-label">
-                            <h3>Reena Sanghvi</h3>
-                            <p>Goa - October 2025</p>
+                    </article>
+                    <article class="portfolio-item" tabindex="0" role="button" aria-label="Read Reena Sanghvi's Goa journey story">
+                        <div class="portfolio-cover">
+                            <img src="images/tooplate-creative-22.jpg" alt="Illustrated portrait representing traveller Reena Sanghvi" loading="lazy">
+                            <div class="portfolio-label">
+                                <span class="portfolio-location">GOA · OCTOBER 2025</span>
+                                <h3>Reena Sanghvi</h3>
+                            </div>
+                        </div>
+                        <div class="portfolio-card-copy">
+                            <span class="portfolio-quote-mark" aria-hidden="true">“</span>
+                            <p>“Such beautiful arrangements. All of us ladies had a wonderful time in Goa.”</p>
+                            <span class="portfolio-read">Read their story <span aria-hidden="true">↗</span></span>
                         </div>
                         <div class="portfolio-data" hidden>
                             <p class="description">Thank you so much Surabhi and Nilay. Bahut sundar arrangement tha. Hume vishwaas hi nai hua ki flight se aana jaana karke aur itne sundar hotel me stay karne ke baad bhi humara itne reasonable price me trip kaise hua! Goa me hum sab ladies ne bahut enjoy kiya. God bless both of you 🥰🥰🥰</p>
                             <a href="https://www.youtube.com/@thatgoodgene" class="visit-url">View Journey</a>
                         </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="images/tooplate-creative-23.jpg" alt="Gopal Lapsetwar's Thailand itinerary planning experience" loading="lazy">
-                        <div class="portfolio-label">
-                            <h3>Gopal Lapsetwar</h3>
-                            <p>Thailand - February 2026</p>
+                    </article>
+                    <article class="portfolio-item" tabindex="0" role="button" aria-label="Read Gopal Lapsetwar's Thailand journey story">
+                        <div class="portfolio-cover">
+                            <img src="images/tooplate-creative-23.jpg" alt="Illustrated portrait representing traveller Gopal Lapsetwar" loading="lazy">
+                            <div class="portfolio-label">
+                                <span class="portfolio-location">THAILAND · FEBRUARY 2026</span>
+                                <h3>Gopal Lapsetwar</h3>
+                            </div>
+                        </div>
+                        <div class="portfolio-card-copy">
+                            <span class="portfolio-quote-mark" aria-hidden="true">“</span>
+                            <p>“The consolidated itinerary made everything convenient. The entire trip was smooth, well-organized, and stress-free.”</p>
+                            <span class="portfolio-read">Read their story <span aria-hidden="true">↗</span></span>
                         </div>
                         <div class="portfolio-data" hidden>
                             <p class="description">We had a really great experience planning our Thailand trip with GhoomSafar. They prepared the itinerary exactly according to our preferences and were very flexible whenever we wanted to adjust or change places to visit.
@@ -430,23 +469,37 @@ Free HTML CSS Template
                                 Overall, the entire trip was smooth, well-organized, and stress-free. Would definitely recommend them to anyone planning a Thailand trip.</p>
                             <a href="https://www.youtube.com/@thatgoodgene" class="visit-url">View Journey</a>
                         </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="images/tooplate-creative-24.jpg" alt="Tejal Gadewar's Thailand trip review and budget-friendly itinerary" loading="lazy">
-                        <div class="portfolio-label">
-                            <h3>Tejal Gadewar</h3>
-                            <p>Thailand - February 2026</p>
+                    </article>
+                    <article class="portfolio-item" tabindex="0" role="button" aria-label="Read Tejal Gadewar's Thailand journey story">
+                        <div class="portfolio-cover">
+                            <img src="images/tooplate-creative-24.jpg" alt="Illustrated portrait representing traveller Tejal Gadewar" loading="lazy">
+                            <div class="portfolio-label">
+                                <span class="portfolio-location">THAILAND · FEBRUARY 2026</span>
+                                <h3>Tejal Gadewar</h3>
+                            </div>
+                        </div>
+                        <div class="portfolio-card-copy">
+                            <span class="portfolio-quote-mark" aria-hidden="true">“</span>
+                            <p>“They helped us explore at our own pace, save money, and feel that our trip was in safe hands.”</p>
+                            <span class="portfolio-read">Read their story <span aria-hidden="true">↗</span></span>
                         </div>
                         <div class="portfolio-data" hidden>
                             <p class="description">We were given multiple options for itinerary planning according to our preferences for the trip. The team helped us to explore certian locations on our own and that helped us to save a hefty amount of bucks. They are genuine, extremely supportive and we felt safe and that our money & trip was in safe hands with them.</p>
                             <a href="https://www.youtube.com/@thatgoodgene" class="visit-url">View Journey</a>
                         </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="images/tooplate-creative-25.jpg" alt="Saidappa Mashalkar's Hampi trip with smooth travel planning" loading="lazy">
-                        <div class="portfolio-label">
-                            <h3>Saidappa Mashalkar</h3>
-                            <p>Hampi - February 2026</p>
+                    </article>
+                    <article class="portfolio-item" tabindex="0" role="button" aria-label="Read Saidappa Mashalkar's Hampi journey story">
+                        <div class="portfolio-cover">
+                            <img src="images/tooplate-creative-25.jpg" alt="Illustrated portrait representing traveller Saidappa Mashalkar" loading="lazy">
+                            <div class="portfolio-label">
+                                <span class="portfolio-location">HAMPI · FEBRUARY 2026</span>
+                                <h3>Saidappa Mashalkar</h3>
+                            </div>
+                        </div>
+                        <div class="portfolio-card-copy">
+                            <span class="portfolio-quote-mark" aria-hidden="true">“</span>
+                            <p>“The stay, travel, and food were excellent. The whole trip was very well organised.”</p>
+                            <span class="portfolio-read">Read their story <span aria-hidden="true">↗</span></span>
                         </div>
                         <div class="portfolio-data" hidden>
                             <p class="description">Thank you Nilay and Surabhi for such a wonderful trip arrangement. Stay was excellent, travel bus and driver were also good and food was amazing.
@@ -454,20 +507,27 @@ Free HTML CSS Template
                                 Thank you.</p>
                             <a href="https://www.youtube.com/@thatgoodgene" class="visit-url">View Journey</a>
                         </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="images/tooplate-creative-26.jpg" alt="Sakshi Chintawar's Bali honeymoon planning and travel ideas" loading="lazy">
-                        <div class="portfolio-label">
-                            <h3>Sakshi Chintawar</h3>
-                            <p>Bali - June 2026</p>
+                    </article>
+                    <article class="portfolio-item" tabindex="0" role="button" aria-label="Read Sakshi Chintawar's Bali journey story">
+                        <div class="portfolio-cover">
+                            <img src="images/tooplate-creative-26.jpg" alt="Illustrated portrait representing traveller Sakshi Chintawar" loading="lazy">
+                            <div class="portfolio-label">
+                                <span class="portfolio-location">BALI · JUNE 2026</span>
+                                <h3>Sakshi Chintawar</h3>
+                            </div>
+                        </div>
+                        <div class="portfolio-card-copy">
+                            <span class="portfolio-quote-mark" aria-hidden="true">“</span>
+                            <p>“Stellar ideas for offbeat experiences, avoiding the rush, and getting the most from our budget.”</p>
+                            <span class="portfolio-read">Read their story <span aria-hidden="true">↗</span></span>
                         </div>
                         <div class="portfolio-data" hidden>
                             <p class="description">We are planning our honeymoon with GhoomSafar and they have given us some stellar ideas to explore unique places, get offbeat experiences, avoid rush and get the full bank for our bucks. We will definitely recommend GhoomSafar for best itineraries and value for money.</p>
                             <a href="https://www.youtube.com/@thatgoodgene" class="visit-url">View Journey</a>
                         </div>
+                    </article>
                     </div>
                 </div>
-            </div>
         </section>
 
         <!-- ABOUT SECTION -->
@@ -510,7 +570,7 @@ Free HTML CSS Template
                         </div>
                         <div class="contact-item">
                             <label>Call / WhatsApp</label>
-                            <p>+91 9112926250</p>
+                            <p><a href="https://wa.me/919112926250" target="_blank" rel="noopener noreferrer" aria-label="Chat with GhoomSafar on WhatsApp at +91 9112926250">+91 9112926250</a><span class="whatsapp-hint"><span aria-hidden="true">↖</span> Click the number to chat</span></p>
                         </div>
                         <div class="contact-item">
                             <label>Based In</label>
@@ -518,7 +578,7 @@ Free HTML CSS Template
                         </div>
                     </div>
                 </div>
-                <form class="contact-form" id="contactForm">
+                <form class="contact-form" id="contactForm" action="https://formspree.io/f/mbdzjkvd" method="post">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Your Name</label>
@@ -539,7 +599,7 @@ Free HTML CSS Template
                     </div>
                     <button type="submit" class="submit-btn">Design My Journey</button>
                 </form>
-                <div class="form-success" id="formSuccess">
+                <div class="form-success" id="formSuccess" role="status" aria-live="polite">
                     <div class="success-icon">✈</div>
                     <h4>Your Safar request is on its way!</h4>
                     <p>We'll get back to you within 24 hours.</p>
@@ -548,11 +608,12 @@ Free HTML CSS Template
         </section>
 
         <!-- PORTFOLIO MODAL -->
-        <div id="portfolioModal" class="portfolio-modal">
+        <div id="portfolioModal" class="portfolio-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDescription" aria-hidden="true">
             <div class="modal-content">
-                <button class="modal-close" onclick="closePortfolioModal()">&times;</button>
+                <button type="button" class="modal-close" aria-label="Close journey story" onclick="closePortfolioModal()">&times;</button>
                 <img id="modalImage" src="" alt="" class="modal-image">
                 <div class="modal-details">
+                    <p class="modal-kicker"><span aria-hidden="true">✈</span> A NOTE FROM THE ROAD</p>
                     <h3 id="modalTitle"></h3>
                     <p id="modalCategory"></p>
                     <p id="modalDescription"></p>
