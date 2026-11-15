@@ -2778,6 +2778,38 @@ nav a.nav-cta:hover {
 	}
 }
 
+@media (max-width: 768px) {
+	.geo-stats {
+		flex-direction: row;
+		align-items: stretch;
+		margin-bottom: 24px;
+		padding: 7px 3px;
+	}
+
+	.geo-stat {
+		flex: 1 1 0;
+		min-width: 0;
+		padding: 13px 3px;
+	}
+
+	.geo-stat-divider {
+		width: 1px;
+		height: 34px;
+		align-self: center;
+	}
+
+	.geo-stat-number {
+		margin-bottom: 4px;
+		font-size: clamp(26px, 8vw, 32px);
+	}
+
+	.geo-stat-label {
+		font-size: clamp(7px, 2vw, 9px);
+		letter-spacing: 0.045em;
+		white-space: nowrap;
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
 	.menu-toggle,
 	.menu-toggle span,
@@ -2789,4 +2821,54 @@ nav a.nav-cta:hover {
 
 .portfolio-label h3 {
 	color: #ffffff;
+}
+
+/* Warm ruled stationery with a subtle, visible paper grain. */
+.contact-form {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	border-color: rgba(91, 77, 48, 0.22);
+	background:
+		repeating-linear-gradient(
+			to bottom,
+			transparent 0,
+			transparent 30px,
+			rgba(75, 157, 169, 0.13) 31px,
+			transparent 32px
+		),
+		radial-gradient(ellipse at 18% 10%, rgba(255, 255, 255, 0.6), transparent 50%),
+		linear-gradient(135deg, #f6f0d7, #efe7c6 52%, #f7f0d3);
+	box-shadow: 3px 5px 0 rgba(87, 73, 42, 0.08), 0 16px 36px rgba(42, 42, 42, 0.07);
+}
+
+.contact-form::before {
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	border-radius: inherit;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='.28'/%3E%3C/svg%3E");
+	background-size: 180px 180px;
+	content: "";
+	opacity: 0.16;
+	pointer-events: none;
+}
+
+.form-group input,
+.form-group textarea {
+	border-color: rgba(91, 77, 48, 0.2);
+	border-radius: 7px 3px 6px 3px;
+	background-color: rgba(255, 253, 241, 0.82);
+	box-shadow: inset 0 1px 2px rgba(87, 73, 42, 0.025);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+	border-color: rgba(227, 116, 52, 0.72);
+	background-color: rgba(255, 254, 239, 0.9);
+	box-shadow: 0 0 0 3px rgba(227, 116, 52, 0.1);
+}
+
+.form-group textarea {
+	line-height: inherit;
 }
