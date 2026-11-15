@@ -16,6 +16,14 @@ const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('nav');
 let slideInterval;
 
+function setMobileMenuOpen(isOpen) {
+   menuToggle.classList.toggle('active', isOpen);
+   nav.classList.toggle('active', isOpen);
+   document.querySelector('header').classList.toggle('menu-open', isOpen);
+   menuToggle.setAttribute('aria-expanded', String(isOpen));
+   menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+}
+
 // Initialize slider
 function initSlider() {
    // Ensure slides and dots exist
@@ -80,10 +88,7 @@ function currentSlide(n) {
 // Mobile Menu Toggle
 menuToggle.addEventListener('click', (e) => {
    e.stopPropagation();
-   const isOpen = menuToggle.classList.toggle('active');
-   nav.classList.toggle('active', isOpen);
-   menuToggle.setAttribute('aria-expanded', String(isOpen));
-   menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+   setMobileMenuOpen(!nav.classList.contains('active'));
 });
 
 // Scroll to top function
@@ -92,10 +97,7 @@ function scrollToTop() {
       top: 0,
       behavior: 'smooth'
    });
-   menuToggle.classList.remove('active');
-   nav.classList.remove('active');
-   menuToggle.setAttribute('aria-expanded', 'false');
-   menuToggle.setAttribute('aria-label', 'Open navigation menu');
+   setMobileMenuOpen(false);
 }
 
 // Highlight active nav on scroll
@@ -128,10 +130,7 @@ navLinks.forEach(link => {
 
       if (targetSection) {
          // Close mobile menu
-         menuToggle.classList.remove('active');
-         nav.classList.remove('active');
-         menuToggle.setAttribute('aria-expanded', 'false');
-         menuToggle.setAttribute('aria-label', 'Open navigation menu');
+         setMobileMenuOpen(false);
          document.querySelector('header').classList.remove('header-hidden');
 
          // Calculate scroll position accounting for header
@@ -170,19 +169,13 @@ window.addEventListener('scroll', () => {
 // Close menu when clicking outside
 document.addEventListener('click', (e) => {
    if (e.target instanceof Element && !e.target.closest('header')) {
-      menuToggle.classList.remove('active');
-      nav.classList.remove('active');
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.setAttribute('aria-label', 'Open navigation menu');
+      setMobileMenuOpen(false);
    }
 });
 
 document.addEventListener('keydown', (e) => {
    if (e.key === 'Escape' && nav.classList.contains('active')) {
-      menuToggle.classList.remove('active');
-      nav.classList.remove('active');
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.setAttribute('aria-label', 'Open navigation menu');
+      setMobileMenuOpen(false);
       menuToggle.focus();
    }
 });
