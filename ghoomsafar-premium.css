@@ -620,7 +620,7 @@ nav a.nav-cta:hover {
 }
 
 .portfolio-heading .geography-eyebrow {
-	justify-content: flex-start;
+	justify-content: center;
 	margin-bottom: 15px;
 }
 
@@ -757,9 +757,9 @@ nav a.nav-cta:hover {
 		var(--gs-white);
 }
 
-.section-about > .section-title {
+.section-about > .section-eyebrow {
+	justify-content: center;
 	margin-bottom: 42px;
-	text-align: center;
 }
 
 .about-container {
@@ -1200,7 +1200,7 @@ footer {
 		gap: 38px;
 	}
 
-	.section-about > .section-title {
+	.section-about > .section-eyebrow {
 		margin-bottom: 30px;
 	}
 
