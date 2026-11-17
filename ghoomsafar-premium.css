@@ -1663,7 +1663,7 @@ nav a.nav-cta:hover {
 	}
 }
 
-.modal-image {
+.modal-polaroid {
 	width: 46%;
 	max-height: 62vh;
 	padding: 9px 9px 34px;
@@ -1671,6 +1671,29 @@ nav a.nav-cta:hover {
 	background: #faf8da;
 	box-shadow: 3px 6px 12px rgba(42, 42, 42, 0.18);
 	transform: rotate(-2deg);
+}
+
+.modal-image {
+	display: block;
+	width: 100%;
+	max-height: calc(62vh - 55px);
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+}
+
+.modal-polaroid-caption {
+	display: block;
+	margin-top: 10px;
+	color: #4a453a;
+	font-family: "Segoe Print", "Bradley Hand", "Brush Script MT", cursive;
+	font-size: 19px;
+	line-height: 1;
+	text-align: center;
+	transform: rotate(-1deg);
+}
+
+.modal-polaroid-caption[hidden] {
+	display: none;
 }
 
 .modal-details {
@@ -1772,9 +1795,9 @@ nav a.nav-cta:hover {
 		overflow-y: auto;
 	}
 
-	.modal-content > .modal-image {
+	.modal-content > .modal-polaroid {
 		width: 100%;
-		max-height: 34vh;
+		max-height: none;
 		order: 1;
 	}
 
@@ -1902,12 +1925,11 @@ nav a.nav-cta:hover {
 	background: var(--gs-orange);
 }
 
-.modal-content > .modal-image {
+.modal-content > .modal-polaroid {
 	flex: 0 1 46%;
 	width: 46%;
 	min-width: 0;
 	max-height: 48vh;
-	object-fit: contain;
 }
 
 .modal-content > .modal-details {
@@ -1949,10 +1971,10 @@ nav a.nav-cta:hover {
 		max-height: 82vh;
 	}
 
-	.modal-content > .modal-image {
+	.modal-content > .modal-polaroid {
 		flex: 0 0 auto;
 		width: 100%;
-		max-height: 32vh;
+		max-height: none;
 	}
 
 	.modal-content > .modal-details {
@@ -1991,13 +2013,11 @@ nav a.nav-cta:hover {
 	scroll-behavior: smooth;
 }
 
-.modal-content > .modal-image {
+.modal-content > .modal-polaroid {
 	align-self: center;
 	width: 100%;
 	max-width: 390px;
 	max-height: 48vh;
-	aspect-ratio: 4 / 3;
-	object-fit: cover;
 }
 
 .modal-content > .modal-details {
@@ -2058,7 +2078,7 @@ nav a.nav-cta:hover {
 	}
 }
 
-.portfolio-modal.active .modal-image {
+.portfolio-modal.active .modal-polaroid {
 	animation: polaroid-arrive 0.58s 0.08s cubic-bezier(0.2, 0.75, 0.25, 1) both;
 }
 
@@ -2082,11 +2102,9 @@ nav a.nav-cta:hover {
 		padding: 25px 22px 22px;
 	}
 
-	.modal-content > .modal-image {
-		width: min(100%, 340px);
-		max-height: 25vh;
-		aspect-ratio: auto;
-		object-fit: contain;
+	.modal-content > .modal-polaroid {
+		width: min(100%, 320px);
+		max-height: none;
 		justify-self: center;
 	}
 
@@ -2128,8 +2146,8 @@ nav a.nav-cta:hover {
 		padding: 22px 17px 18px;
 	}
 
-	.modal-content > .modal-image {
-		max-height: 21vh;
+	.modal-content > .modal-polaroid {
+		width: min(100%, 290px);
 	}
 
 	.modal-details p#modalDescription {
@@ -2139,7 +2157,7 @@ nav a.nav-cta:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.portfolio-modal.active .modal-image,
+	.portfolio-modal.active .modal-polaroid,
 	.portfolio-modal.active .modal-kicker,
 	.portfolio-modal.active .modal-details h3#modalTitle,
 	.portfolio-modal.active .modal-details p#modalCategory,
@@ -2871,4 +2889,51 @@ nav a.nav-cta:hover {
 
 .form-group textarea {
 	line-height: inherit;
+}
+
+.portfolio-item-sakshi .portfolio-cover {
+	aspect-ratio: 4 / 3;
+	background: #e8ddc8;
+}
+
+.portfolio-item-sakshi .portfolio-cover img {
+	object-position: center 48%;
+	filter: saturate(1.02) contrast(1.04);
+}
+
+.portfolio-item-sakshi .portfolio-cover::after {
+	inset: 44% 0 0;
+	background: linear-gradient(180deg, transparent 20%, rgba(26, 26, 26, 0.68));
+}
+
+.modal-content.has-review-polaroid > .modal-polaroid {
+	width: 100%;
+	max-width: 370px;
+	padding: 10px 10px 37px;
+	border-color: rgba(91, 77, 48, 0.24);
+	background: #fffdf5;
+	box-shadow: 3px 7px 16px rgba(42, 42, 42, 0.2);
+}
+
+.modal-content.has-review-polaroid .modal-image {
+	max-height: none;
+	aspect-ratio: 3 / 2;
+	object-position: center 48%;
+}
+
+.modal-content.has-review-polaroid .modal-polaroid-caption {
+	font-size: 22px;
+}
+
+@media (max-width: 768px) {
+	.modal-content.has-review-polaroid > .modal-polaroid {
+		width: min(100%, 300px);
+		max-width: 300px;
+		padding: 8px 8px 32px;
+	}
+
+	.modal-content.has-review-polaroid .modal-polaroid-caption {
+		margin-top: 8px;
+		font-size: 19px;
+	}
 }

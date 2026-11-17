@@ -285,6 +285,18 @@ function openPortfolioModal(item) {
    document.getElementById('modalImage').src = image.currentSrc || image.src;
    document.getElementById('modalImage').alt = image.alt;
    document.getElementById('modalDescription').textContent = descriptionElement.textContent.trim();
+   const polaroidCaption = modal.querySelector('.modal-polaroid-caption');
+   const isSakshiReview = item.classList.contains('portfolio-item-sakshi');
+   const isGopalReview = item.classList.contains('portfolio-item-gopal');
+   const isReenaReview = item.classList.contains('portfolio-item-reena');
+   const isSaidappaReview = item.classList.contains('portfolio-item-saidappa');
+   const isAlpanaReview = item.classList.contains('portfolio-item-alpana');
+   const isSanyamReview = item.classList.contains('portfolio-item-sanyam');
+   const reviewCaption = isSakshiReview ? 'Bali June 2026' : isGopalReview ? 'Thailand Feb 2026' : isReenaReview ? 'Goa October 2025' : isSaidappaReview ? 'Hampi February 2026' : isAlpanaReview ? 'Japan November 2026' : isSanyamReview ? 'Thailand November 2025' : '';
+   const hasReviewPolaroid = Boolean(reviewCaption);
+   polaroidCaption.textContent = reviewCaption;
+   polaroidCaption.hidden = !hasReviewPolaroid;
+   modal.querySelector('.modal-content').classList.toggle('has-review-polaroid', hasReviewPolaroid);
 
    const featuresList = document.getElementById('modalFeatures');
    featuresList.replaceChildren();
