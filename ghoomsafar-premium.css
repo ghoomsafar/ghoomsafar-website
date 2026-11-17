@@ -2892,12 +2892,13 @@ nav a.nav-cta:hover {
 }
 
 .portfolio-item-sakshi .portfolio-cover {
-	aspect-ratio: 4 / 3;
+	aspect-ratio: 16 / 10;
 	background: #e8ddc8;
 }
 
 .portfolio-item-sakshi .portfolio-cover img {
-	object-position: center 48%;
+	object-fit: cover;
+	object-position: center 52%;
 	filter: saturate(1.02) contrast(1.04);
 }
 
@@ -2917,7 +2918,7 @@ nav a.nav-cta:hover {
 
 .modal-content.has-review-polaroid .modal-image {
 	max-height: none;
-	aspect-ratio: 3 / 2;
+	aspect-ratio: 16 / 10;
 	object-position: center 48%;
 }
 
